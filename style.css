@@ -331,7 +331,7 @@ h1, h2, h3, h4, h5, h6 {
   .nav>.nav-list {
     display: flex;
     flex-direction: column;
-    margin-top: 114px;
+    margin-top: 133px;
     margin-left: 127px;
     margin-right: 0;
   }
@@ -374,9 +374,17 @@ h1, h2, h3, h4, h5, h6 {
   width: 50px;
   height: 50px;
   text-align: center;
-  padding: 2px 0;
+  padding-top: 12px;
+  padding-bottom: 2px;
   cursor: pointer;
 }
+
+/*подстройка под Pixel Perfect*/
+.hamburger.active {
+  margin-right: 7px;
+  transition: all 0.5s ease-in-out;
+}
+
 
 @media screen and (max-width: 768px) {
   .hamburger {
@@ -391,12 +399,15 @@ h1, h2, h3, h4, h5, h6 {
   height: 3px;
   background-color: var(--main-color);
   display: block;
-  margin: 9px auto;
+  margin: 0 auto;
+  margin-bottom: 9px;
   transition: all 0.5s ease-in-out;
 }
 
 .hamburger.active>.hamburger-line:first-child {
-  transform: translateY(12px) rotate(45deg);
+  transform: translateY(13px) rotate(45deg);
+  height: 2px;
+  width: 62px;
 }
 
 .hamburger.active>.hamburger-line:nth-child(2) {
@@ -404,7 +415,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hamburger.active>.hamburger-line:nth-child(3) {
-  transform: translateY(-12px) rotate(-45deg);
+  transform: translateY(-11px) rotate(-45deg);
+  height: 2px;
+  width: 62px;
 }
 
 
