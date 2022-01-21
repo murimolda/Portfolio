@@ -897,6 +897,15 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+@media screen and (max-width: 600px) {
+  .video-player-cover {
+    width: 100vw;
+    height: calc(100vw / 1.5);
+    background-size: 100vw auto;
+    background-position: center center;
+  }
+}
+
 /*Section price*/
 
 .price-wrap {
@@ -992,6 +1001,12 @@ h1, h2, h3, h4, h5, h6 {
     background: url('assets/img/contacts-bg768px.jpg') no-repeat;
     background-size: auto 600px;
     background-position: center center;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .contacts-container {
+    background-position: 0 center;
   }
 }
 
