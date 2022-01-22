@@ -262,6 +262,7 @@ h1, h2, h3, h4, h5, h6 {
 @media screen and (max-width: 550px) {
   .header-container {
     background-position: -300px -30px;
+    padding-left: 30px;
     padding-right: 30px;
   }
 }
@@ -314,16 +315,15 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     z-index: 1000;
     top: 0;
-    right: -620px;
-    width: calc(100vw - 148px);
+    right: calc(-100vw - 620px);
     height: 100vh;
-    background-color: var(--main-bg);
+    background-color: rgba(0, 0, 0, 0.5);
     transition: all 0.5s ease-out;
   }
 
   .nav.open {
     right: 0;
-    width: calc(100vw - 148px);
+    width: 100vw;
     height: 100vh;
     transition: all 0.5s ease-out;
   }
@@ -331,9 +331,15 @@ h1, h2, h3, h4, h5, h6 {
   .nav>.nav-list {
     display: flex;
     flex-direction: column;
-    margin-top: 133px;
-    margin-left: 127px;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--main-bg);
+    opacity: 1;
+    padding-top: 133px;
+    padding-left: 127px;
+    margin-left: 148px;
     margin-right: 0;
+    transition: all 0.5s ease-out;
   }
 
   .nav>.nav-list>.nav-item {
@@ -352,18 +358,14 @@ h1, h2, h3, h4, h5, h6 {
 
 @media screen and (max-width: 619px) {
 
-  .nav {
-    width: 100vw;
-  }
-
-  .nav.open {
-    width: 100vw;
+  .nav>.nav-list {
+    margin-left: 0;
   }
 }
 
 @media screen and (max-width: 400px) {
   .nav>.nav-list {
-    margin-left: 77px;
+    padding-left: 77px;
   }
 }
 
@@ -585,6 +587,7 @@ h1, h2, h3, h4, h5, h6 {
 @media screen and (max-width: 550px) {
   .hero-container {
     background-position: -300px -120px;
+    padding-left: 30px;
   }
 }
 
