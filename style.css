@@ -809,6 +809,11 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--main-bg);
 }
 
+.portfolio-button.active:hover {
+  border: 2px solid var(--title-color);
+  color: var(--main-color);
+}
+
 .portfolio-image-wrap {
   display: grid;
   justify-items: stretch;
@@ -1041,6 +1046,12 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+}
+
+@media screen and (max-width: 550px) {
+  .contacts-form {
+    align-items: center;
+  }
 }
 
 .contacts-input {
