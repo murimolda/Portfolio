@@ -189,6 +189,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     changeClassActive("lang-button");
 
+    /*Change color theme*/
+    const changeColorTheme = () => {
+        const whiteThemeElements = document.querySelectorAll('[data-theme]');
+        whiteThemeElements.forEach(element => {
+            element.classList.toggle("white-theme");
+        });
+    }
+    const changeThemeButton = document.querySelector('.header-change-theme-button');
+    changeThemeButton.addEventListener('click', () => {
+        changeColorTheme();
+        changeThemeButton.classList.toggle("dark-theme");
+    })
+
 
     console.log(
         'Portfolio#2 Самооценка: 85\n\

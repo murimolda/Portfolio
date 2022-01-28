@@ -562,6 +562,34 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
+.header-change-theme {
+  height: 50px;
+  width: 50px;
+}
+
+.header-change-theme-button.button {
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  margin: 0 35px;
+}
+
+.header-change-theme-button.white-theme {
+  background-image: url('assets/svg/icons/white-theme.svg');
+}
+
+.header-change-theme-button.dark-theme {
+  background-image: url('assets/svg/icons/dark-theme.svg');
+}
+
+
+.header-change-theme-button.white-theme:hover {
+  background-color: transparent;
+}
+
+
+
+
 /*MAIN*/
 
 .section {
