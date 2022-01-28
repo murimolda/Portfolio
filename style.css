@@ -74,6 +74,12 @@
   --button-hover-bg: #CCBA8D;
   --main-font-size: 20px;
   --main-line-height: 40px;
+
+  /*Светлая тема*/
+  --main-white-bg: #ffffff;
+  --main-white-color: #000000;
+  --matte-black-color: #1C1C1C;
+  --lang-button-hover-color: #BD792A;
 }
 
 /* Свойство для контроля переполнения потока. 
@@ -185,6 +191,11 @@ body {
   width: 100%;
 }
 
+body.white-theme {
+  background-color: var(--main-white-bg);
+  color: var(--matte-black-color);
+}
+
 .container {
   max-width: 1440px;
   margin: 0 auto;
@@ -193,6 +204,10 @@ body {
 
 a {
   color: var(--main-color);
+}
+
+a.white-theme {
+  color: var(--matte-black-color);
 }
 
 a:hover {
@@ -225,10 +240,21 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
 }
 
+.button.white-theme:hover {
+  background-color: var(--matte-black-color);
+  color: var(--title-color);
+  transition: 1s;
+  border: none;
+}
+
 /*SVG Sprite*/
 
 .icon {
   fill: var(--main-color);
+}
+
+.icon.white-theme {
+  fill: var(--matte-black-color);
 }
 
 .icon:hover {
@@ -247,7 +273,10 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center 0;
   padding: 20px;
   overflow: hidden;
+}
 
+.header-container.white-theme {
+  background: url('assets/img/header-bg-white.jpg');
 }
 
 @media screen and (max-width: 768px) {
@@ -277,6 +306,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
+
 .header-logo a {
   display: inline-block;
   height: 100%;
@@ -303,6 +333,11 @@ h1, h2, h3, h4, h5, h6 {
   transition: .3s;
 }
 
+.nav-link.white-theme:hover {
+  color: var(--lang-button-hover-color);
+  transition: .3s;
+}
+
 
 /*Nav for hamburger*/
 
@@ -319,6 +354,10 @@ h1, h2, h3, h4, h5, h6 {
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
     transition: all 0.5s ease-out;
+  }
+
+  .nav.white-theme {
+    background-color: rgba(0, 0, 0, 0.3);
   }
 
   .nav.open {
@@ -340,6 +379,11 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 148px;
     margin-right: 0;
     transition: all 0.5s ease-out;
+  }
+
+  .nav.white-theme>.nav-list {
+    background-color: var(--main-white-bg);
+    opacity: 1;
   }
 
   .nav>.nav-list>.nav-item {
@@ -406,6 +450,10 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s ease-in-out;
 }
 
+.hamburger-line.white-theme {
+  background-color: var(--matte-black-color);
+}
+
 .hamburger:hover>.hamburger-line {
   background-color: var(--title-color);
   transition: all 0.5s ease-in-out;
@@ -451,19 +499,36 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 50px;
 }
 
+.lang-button.white-theme {
+  background-color: transparent;
+  color: var(--matte-black-color);
+}
+
 .lang-button:hover {
   background-color: transparent;
   color: var(--button-hover-bg);
   transition: 1s;
 }
 
+.lang-button.white-theme:hover {
+  background-color: transparent;
+  color: var(--lang-button-hover-color);
+  transition: 1s;
+}
+
 .lang-button.active {
+  background-color: transparent;
   color: var(--title-color);
 }
 
+.lang-button.white-theme.active {
+  background-color: transparent;
+  color: var(--main-white-bg);
+}
+
 .lang-button.active:hover {
-  color: var(--button-hover-bg);
-  opacity: 0.7;
+  background-color: transparent;
+  color: var(--lang-button-hover-color);
   transition: 1s;
 }
 
@@ -473,6 +538,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 50px;
   margin: 0 9px;
   color: var(--main-color);
+}
+
+.lang-button.white-theme:first-child::after {
+  color: var(--matte-black-color);
 }
 
 @media screen and (max-width: 768px) {
@@ -493,7 +562,6 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
-
 /*MAIN*/
 
 .section {
@@ -511,6 +579,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 40px;
   line-height: 80px;
   overflow: hidden;
+}
+
+.section-title.white-theme {
+  color: var(--matte-black-color);
 }
 
 @media screen and (max-width: 1024px) {
@@ -540,6 +612,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: calc(-50% - 20px);
 }
 
+.section-title.white-theme::before {
+  border-bottom: 2px solid var(--matte-black-color);
+}
+
 @media screen and (max-width: 768px) {
   .section-title::before {
     margin-left: calc(-50% - 21px);
@@ -557,6 +633,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 20px;
 }
 
+.section-title.white-theme::after {
+  border-bottom: 2px solid var(--matte-black-color);
+}
+
 @media screen and (max-width: 768px) {
   .section-title::after {
     margin-left: 22px;
@@ -572,6 +652,10 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 160px;
   padding-left: 80px;
   padding-bottom: 330px;
+}
+
+.hero-container.white-theme {
+  background-image: url('assets/img/header-bg-white.jpg');
 }
 
 @media screen and (max-width: 768px) {
@@ -595,6 +679,10 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--main-color);
   font-size: 60px;
   line-height: 120px;
+}
+
+.hero-title.white-theme {
+  color: var(--matte-black-color);
 }
 
 @media screen and (max-width: 768px) {
@@ -626,6 +714,12 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--main-bg);
   text-align: center;
   background: var(--title-color);
+}
+
+.hero-button.white-theme {
+  color: var(--matte-black-color);
+  background: var(--main-white-bg);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 @media screen and (max-width: 768px) {
@@ -732,6 +826,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 20px;
 }
 
+.skills-item-title.white-theme {
+  color: var(--matte-black-color);
+}
+
 @media screen and (max-width: 768px) {
   .skills-item-title {
     margin-bottom: 21px;
@@ -793,6 +891,11 @@ h1, h2, h3, h4, h5, h6 {
   background-color: transparent;
 }
 
+.portfolio-button.white-theme {
+  color: var(--matte-black-color);
+  background-color: var(--title-color);
+}
+
 @media screen and (max-width: 550px) {
   .portfolio-button-wrap {
     grid-template-columns: repeat(1, 1fr);
@@ -809,9 +912,19 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--main-bg);
 }
 
+.portfolio-button.white-theme.active {
+  background: var(--matte-black-color);
+  border: 2px solid var(--matte-black-color);
+  color: var(--title-color);
+}
+
 .portfolio-button.active:hover {
   border: 2px solid var(--title-color);
   color: var(--main-color);
+}
+
+.portfolio-button.white-theme.active:hover {
+  border: 2px solid var(--matte-black-color);
 }
 
 .portfolio-image-wrap {
@@ -964,6 +1077,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 20px;
 }
 
+.price-value.white-theme {
+  color: var(--matte-black-color);
+}
+
 .price-text {
   font-size: 18px;
   line-height: 36px;
@@ -974,6 +1091,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 40px;
   background: var(--title-color);
   color: var(--main-bg);
+}
+
+.price-button.white-theme {
+  color: var(--matte-black-color);
 }
 
 @media screen and (max-width: 768px) {
@@ -995,6 +1116,10 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 195px;
 }
 
+.contacts-container.white-theme {
+  background: url('assets/img/contacts-bg-white.jpg') no-repeat;
+}
+
 @media screen and (max-width: 1024px) {
   .contacts-container {
     justify-content: center;
@@ -1009,6 +1134,10 @@ h1, h2, h3, h4, h5, h6 {
     background: url('assets/img/contacts-bg768px.jpg') no-repeat;
     background-size: auto 600px;
     background-position: center center;
+  }
+
+  .contacts-container.white-theme {
+    background: url('assets/img/contacts-bg768px-white.jpg') no-repeat;
   }
 }
 
@@ -1030,6 +1159,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 40px;
   margin-bottom: 60px;
   text-align: left;
+}
+
+.contacts-title.white-theme {
+  color: var(--matte-black-color);
 }
 
 @media screen and (max-width: 1024px) {
@@ -1064,6 +1197,11 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 3px;
 }
 
+.contacts-input.white-theme {
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid var(--title-color);
+}
+
 @media screen and (max-width: 550px) {
   .contacts-input {
     width: 280px;
@@ -1076,6 +1214,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: var(--main-font-size);
   line-height: 50px;
   font-weight: 300;
+}
+
+.contacts-input.white-theme::placeholder {
+  color: var(--matte-black-color);
 }
 
 @media screen and (max-width: 1024px) {
@@ -1100,6 +1242,12 @@ h1, h2, h3, h4, h5, h6 {
 .contacts-button {
   color: var(--main-bg);
   background-color: var(--title-color);
+}
+
+.contacts-button {
+  color: var(--matte-black-color);
+  background-color: var(--main-color);
+  border-radius: 0;
 }
 
 @media screen and (max-width: 1024px) {

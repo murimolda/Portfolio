@@ -63,6 +63,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     changeClassActive("portfolio-button");
 
+    /*Image cache*/
+    const seasons = ['winter', 'spring', 'summer', 'autumn'];
+    function preloadSummerImages() {
+        for (let i = 1; i <= 6; i++) {
+            const img = new Image();
+            img.src = `assets/img/portfolio-photo/summer/${i}.jpg`;
+            console.log('cash summer');
+        }
+    }
+    preloadSummerImages();
+
+
     /*Page translation by clicking on the language buttons*/
     const i18Obj = {
         'en': {
@@ -103,7 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
             'price-description-3-span-5': 'Make up, visage, hairstyle',
             'order': 'Order shooting',
             'contact-me': 'Contact me',
-            'send-message': 'Send message'
+            'send-message': 'Send message',
+            'E-mail': 'E-mail',
+            'Phone': 'Phone',
+            'Message': 'Message',
         },
         'ru': {
             'skills': 'Навыки',
@@ -143,7 +158,10 @@ document.addEventListener("DOMContentLoaded", function () {
             'price-description-3-span-5': 'Макияж, визаж, прическа',
             'order': 'Заказать съемку',
             'contact-me': 'Свяжитесь со мной',
-            'send-message': 'Отправить'
+            'send-message': 'Отправить',
+            'E-mail': 'Электронный ящик',
+            'Phone': 'Номер телефона',
+            'Message': 'Сообщение',
         }
     }
 
@@ -151,7 +169,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const dataTranslate = document.querySelectorAll('[data-i18]');
         dataTranslate.forEach((element) => {
             let a = element.dataset.i18;
-            element.innerHTML = i18Obj[`${lang}`][`${a}`];
+            if (element.placeholder) {
+                element.placeholder = element.innerHTML = i18Obj[`${lang}`][`${a}`];
+                element.textContent = '';
+            } else {
+                element.innerHTML = i18Obj[`${lang}`][`${a}`];
+            }
         });
     }
 
