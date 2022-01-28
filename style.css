@@ -580,15 +580,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .header-change-theme-button.dark-theme {
   background-image: url('assets/svg/icons/dark-theme.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 
 .header-change-theme-button.white-theme:hover {
   background-color: transparent;
 }
-
-
-
 
 /*MAIN*/
 
@@ -1272,10 +1271,9 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--title-color);
 }
 
-.contacts-button {
+.contacts-button.white-theme {
   color: var(--matte-black-color);
   background-color: var(--main-color);
-  border-radius: 0;
 }
 
 @media screen and (max-width: 1024px) {
