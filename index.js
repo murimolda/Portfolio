@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /*Add elems class = "active"*/
     const changeClassActive = (classMarker) => {
         const elemsCollection = document.querySelectorAll(`.${classMarker}`);
-        elemsCollection.forEach((elem, i) => {
+        elemsCollection.forEach((elem) => {
             elem.addEventListener("click", function () {
                 for (var i = 0; i < elemsCollection.length; i++) {
                     if (elemsCollection[i] != this) {
@@ -65,14 +65,65 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /*Image cache*/
     const seasons = ['winter', 'spring', 'summer', 'autumn'];
-    function preloadSummerImages() {
-        for (let i = 1; i <= 6; i++) {
-            const img = new Image();
-            img.src = `assets/img/portfolio-photo/summer/${i}.jpg`;
-            console.log('cash summer');
+    const preloadSummerImages = (arr) => {
+        arr.forEach(element => {
+            for (let i = 1; i <= portfolioImages.length; i++) {
+                const img = new Image();
+                img.src = `assets/img/portfolio-photo/${element}/${i}.jpg`;
+            }
+        });
+    }
+    preloadSummerImages(seasons);
+
+    /*Saving settings to local storage*/
+    let language = 'en';
+    let themeColor = 'dark';
+
+    function setLocalStorage() {
+        localStorage.setItem('language', language);
+        localStorage.setItem('themeColor', themeColor);
+    }
+    window.addEventListener('beforeunload', setLocalStorage)
+
+    function getLocalStorage() {
+        if (localStorage.getItem('language')) {
+            const language = localStorage.getItem('language');
+            getTranslate(language);
+        }
+        if (localStorage.getItem('themeColor')) {
+            const themeColor = localStorage.getItem('themeColor');
+            changeColorTheme(themeColor);
         }
     }
-    preloadSummerImages();
+    window.addEventListener('load', getLocalStorage)
+
+    /*Change color theme*/
+    const changeThemeButton = document.querySelector('.header-change-theme-button');
+
+    const changeColorTheme = (theme) => {
+        const whiteThemeElements = document.querySelectorAll('[data-theme]');
+        if (theme === 'white') {
+            whiteThemeElements.forEach(element => {
+                element.classList.add("white-theme");
+                changeThemeButton.classList.remove("dark-theme");
+                changeThemeButton.dataset.color = 'white'
+            });
+        } else if (theme === 'dark') {
+            whiteThemeElements.forEach(element => {
+                element.classList.remove("white-theme");
+                changeThemeButton.classList.add("dark-theme");
+                changeThemeButton.dataset.color = 'dark'
+            });
+        }
+        themeColor = theme
+    }
+    changeThemeButton.addEventListener('click', () => {
+        if (changeThemeButton.dataset.color === 'dark') {
+            changeColorTheme('white');
+        } else if (changeThemeButton.dataset.color === 'white') {
+            changeColorTheme('dark');
+        }
+    })
 
 
     /*Page translation by clicking on the language buttons*/
@@ -176,6 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 element.innerHTML = i18Obj[`${lang}`][`${a}`];
             }
         });
+        language = lang;
     }
 
     const langButtons = document.querySelector('.header-lang');
@@ -183,24 +235,12 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             if (event.target.classList.contains('lang-button')) {
                 getTranslate(event.target.dataset.lang);
+                activeLangButton = event.target.dataset.lang;
             }
         }
     });
 
     changeClassActive("lang-button");
-
-    /*Change color theme*/
-    const changeColorTheme = () => {
-        const whiteThemeElements = document.querySelectorAll('[data-theme]');
-        whiteThemeElements.forEach(element => {
-            element.classList.toggle("white-theme");
-        });
-    }
-    const changeThemeButton = document.querySelector('.header-change-theme-button');
-    changeThemeButton.addEventListener('click', () => {
-        changeColorTheme();
-        changeThemeButton.classList.toggle("dark-theme");
-    })
 
 
     console.log(

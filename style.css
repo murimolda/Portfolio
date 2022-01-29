@@ -277,6 +277,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .header-container.white-theme {
   background: url('assets/img/header-bg-white.jpg');
+  background-repeat: no-repeat;
+  background-position: center 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -286,6 +288,11 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 60px;
     padding-right: 63px;
   }
+
+  .header-container.white-theme {
+    background-position: -5px -30px;
+    background-size: auto 620px;
+  }
 }
 
 @media screen and (max-width: 550px) {
@@ -293,6 +300,10 @@ h1, h2, h3, h4, h5, h6 {
     background-position: -300px -30px;
     padding-left: 30px;
     padding-right: 30px;
+  }
+
+  .header-container.white-theme {
+    background-position: -300px -30px;
   }
 }
 
@@ -341,7 +352,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /*Nav for hamburger*/
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 850px) {
   .header-container {
     position: relative;
   }
@@ -432,7 +443,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 850px) {
   .hamburger {
     position: relative;
     display: block;
@@ -484,7 +495,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 850px) {
   .header-lang {
     margin-left: auto;
   }
@@ -559,7 +570,14 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 13px;
     padding-right: 21px;
   }
+}
 
+@media screen and (max-width: 450px) {
+  .lang-button:nth-child(2) {
+    width: 42px;
+    padding-left: 0;
+    padding-right: 10px;
+  }
 }
 
 .header-change-theme {
@@ -574,16 +592,26 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 35px;
 }
 
+@media screen and (max-width: 450px) {
+  .header-change-theme-button.button {
+    margin-left: 0;
+    margin-right: 20px;
+  }
+}
+
 .header-change-theme-button.white-theme {
   background-image: url('assets/svg/icons/white-theme.svg');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .header-change-theme-button.dark-theme {
   background-image: url('assets/svg/icons/dark-theme.svg');
-  background-position: center center;
+  background-position: 0 0;
   background-repeat: no-repeat;
+  background-size: contain;
 }
-
 
 .header-change-theme-button.white-theme:hover {
   background-color: transparent;
@@ -683,6 +711,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-container.white-theme {
   background-image: url('assets/img/header-bg-white.jpg');
+  background-position: center -90px;
+  background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 768px) {
@@ -693,12 +723,21 @@ h1, h2, h3, h4, h5, h6 {
     background-position: -5px -120px;
     background-size: auto 620px;
   }
+
+  .hero-container.white-theme {
+    background-position: -5px -120px;
+    background-size: auto 620px;
+  }
 }
 
 @media screen and (max-width: 550px) {
   .hero-container {
     background-position: -300px -120px;
     padding-left: 30px;
+  }
+
+  .hero-container.white-theme {
+    background-position: -300px -120px;
   }
 }
 
@@ -1145,6 +1184,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .contacts-container.white-theme {
   background: url('assets/img/contacts-bg-white.jpg') no-repeat;
+  background-size: auto 700px;
+  background-position: center center;
 }
 
 @media screen and (max-width: 1024px) {
@@ -1165,6 +1206,8 @@ h1, h2, h3, h4, h5, h6 {
 
   .contacts-container.white-theme {
     background: url('assets/img/contacts-bg768px-white.jpg') no-repeat;
+    background-size: auto 600px;
+    background-position: center center;
   }
 }
 
@@ -1189,7 +1232,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contacts-title.white-theme {
-  color: var(--matte-black-color);
+  color: var(--main-white-bg);
 }
 
 @media screen and (max-width: 1024px) {
