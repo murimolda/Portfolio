@@ -195,6 +195,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    const activeLangButton = document.querySelectorAll('[data-lang]');
+
     const getTranslate = (lang) => {
         const dataTranslate = document.querySelectorAll('[data-i18]');
         dataTranslate.forEach((element) => {
@@ -207,6 +209,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
         language = lang;
+        activeLangButton.forEach(element => {
+            if (element.dataset.lang === lang && !element.classList.contains("active")) {
+                element.classList.add("active")
+            } else if (element.dataset.lang !== lang && element.classList.contains("active")) {
+                element.classList.remove("active")
+            }
+        });
     }
 
     const langButtons = document.querySelector('.header-lang');
@@ -218,8 +227,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
-
-    changeClassActive("lang-button");
 
     /*Saving settings to local storage*/
     let language = 'en';
