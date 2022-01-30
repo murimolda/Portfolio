@@ -75,30 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     preloadSummerImages(seasons);
 
-    /*Saving settings to local storage*/
-    let language = 'en';
-    let themeColor = 'dark';
-
-    function setLocalStorage() {
-        localStorage.setItem('language', language);
-        localStorage.setItem('themeColor', themeColor);
-    }
-    window.addEventListener('beforeunload', setLocalStorage)
-
-    function getLocalStorage() {
-        if (localStorage.getItem('language')) {
-            const language = localStorage.getItem('language');
-            getTranslate(language);
-        }
-        if (localStorage.getItem('themeColor')) {
-            const themeColor = localStorage.getItem('themeColor');
-            changeColorTheme(themeColor);
-        }
-    }
-    window.addEventListener('load', getLocalStorage)
-
     /*Change color theme*/
-    const changeThemeButton = document.querySelector('.header-change-theme-button');
+    const htmlColor = document.querySelector('[data-color]');
+    const changeThemeButton = document.querySelector('.header-change-theme-button')
 
     const changeColorTheme = (theme) => {
         const whiteThemeElements = document.querySelectorAll('[data-theme]');
@@ -106,21 +85,21 @@ document.addEventListener("DOMContentLoaded", function () {
             whiteThemeElements.forEach(element => {
                 element.classList.add("white-theme");
                 changeThemeButton.classList.remove("dark-theme");
-                changeThemeButton.dataset.color = 'white'
+                htmlColor.dataset.color = 'white'
             });
         } else if (theme === 'dark') {
             whiteThemeElements.forEach(element => {
                 element.classList.remove("white-theme");
                 changeThemeButton.classList.add("dark-theme");
-                changeThemeButton.dataset.color = 'dark'
+                htmlColor.dataset.color = 'dark'
             });
         }
         themeColor = theme
     }
     changeThemeButton.addEventListener('click', () => {
-        if (changeThemeButton.dataset.color === 'dark') {
+        if (htmlColor.dataset.color === 'dark') {
             changeColorTheme('white');
-        } else if (changeThemeButton.dataset.color === 'white') {
+        } else if (htmlColor.dataset.color === 'white') {
             changeColorTheme('dark');
         }
     })
@@ -242,42 +221,57 @@ document.addEventListener("DOMContentLoaded", function () {
 
     changeClassActive("lang-button");
 
+    /*Saving settings to local storage*/
+    let language = 'en';
+    let themeColor = 'dark';
+
+    const setLocalStorage = () => {
+        localStorage.setItem('language', language);
+        localStorage.setItem('themeColor', themeColor);
+    }
+    window.addEventListener('beforeunload', setLocalStorage)
+
+    const getLocalStorage = () => {
+        if (localStorage.getItem('language')) {
+            const language = localStorage.getItem('language');
+            getTranslate(language);
+        }
+        if (localStorage.getItem('themeColor')) {
+            const themeColor = localStorage.getItem('themeColor');
+            changeColorTheme(themeColor);
+        }
+    }
+    window.addEventListener('load', getLocalStorage);
+
 
     console.log(
-        'Portfolio#2 Самооценка: 85\n\
-        1. Вёрстка соответствует макету + 48\n\
-            - блок < header > +6\n\
-            - секция hero + 6\n\
-            - секция skills + 6\n\
-            - секция portfolio + 6\n\
-            - секция video + 6\n\
-            - секция price + 6\n\
-            - секция contacts + 6\n\
-            - блок < footer > +6\n\
-            \n\
-        2.Ни на одном из разрешений до 320px включительно\n\
-        не появляется горизонтальная полоса прокрутки. \n\
-        Весь контент страницы при этом сохраняется:\n\
-        не обрезается и не удаляется +15\n\
-        \n\
-            - нет полосы прокрутки при ширине страницы от 1440рх до 768рх +5\n\
-            - нет полосы прокрутки при ширине страницы от 768рх до 480рх +5\n\
-            - нет полосы прокрутки при ширине страницы от 480рх до 320рх +5\n\
-        3. На ширине экрана 768рх и меньше реализовано адаптивное меню +22\n\
-            - при ширине страницы 768рх панель навигации скрывается,\n\
-            появляется бургер-иконка +2\n\
-            - при нажатии на бургер-иконку справа плавно появляется\n\
-            адаптивное меню, бургер-иконка изменяется на крестик +4\n\
-            - высота адаптивного меню занимает всю высоту экрана.\n\
-            При ширине экрана 768-620рх вёрстка меню соответствует макету,\n\
-            когда экран становится уже, меню занимает всю ширину экрана +4\n\
-            - при нажатии на крестик адаптивное меню плавно скрывается\n\
-            уезжая за правую часть экрана, крестик превращается в бургер-иконку +4\n\
-            - бургер-иконка, которая при клике превращается в крестик,\n\
-            создана при помощи css-анимаций без использования изображений +2\n\
-            - ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям +2\n\
-            - при клике по ссылке в адаптивном меню адаптивное меню плавно скрывается,\n\
-            крестик превращается в бургер-иконку +4'
+        'Portfolio#3 Самооценка: 83\n\
+        Смена изображений в секции portfolio +25\n\
+            при кликах по кнопкам Winter, Spring, Summer, Autumn \n\
+            в секции portfolio отображаются изображения \n\
+            из папки с соответствующим названием +20\n\
+            кнопка, по которой кликнули, становится активной \n\
+            т.е. выделяется стилем. Другие кнопки при этом будут неактивными +5\n\
+        Перевод страницы на два языка +25\n\
+            при клике по надписи ru англоязычная страница переводится на русский язык +10\n\
+            при клике по надписи en русскоязычная страница переводится на английский язык +10\n\
+            надписи en или ru, соответствующие текущему языку страницы, \n\
+            становятся активными т.е. выделяются стилем +5n\n\
+        Переключение светлой и тёмной темы +25\n\
+            На страницу добавлен переключатель при клике по которому: \n\
+            тёмная тема приложения сменяется светлой +10\n\
+            светлая тема приложения сменяется тёмной +10\n\
+            после смены светлой и тёмной темы интерактивные элементы \n\
+            по-прежнему изменяют внешний вид при наведении и клике \n\
+            и при этом остаются видимыми на странице (нет ситуации с белым шрифтом на белом фоне) +5\n\
+        Дополнительный функционал: \n\
+            выбранный пользователем язык отображения страницы \n\
+            и светлая или тёмная тема сохраняются при перезагрузке страницы +3\n\
+            Не удалось избавиться от моргания при перезагрзке, поэтому минус 2 балла\n\
+        Дополнительный функционал:\n\
+            сложные эффекты для кнопок при наведении и/или клике +5\n\
+            Для получения максимального балла за пункт требований \n\
+            достаточно добавить кнопкам только один эффект'
     );
 
 
