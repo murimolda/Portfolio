@@ -312,11 +312,23 @@ h1, h2, h3, h4, h5, h6 {
   width: 50px;
 }
 
+@media screen and (max-width: 319px) {
+  .header-logo {
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+  }
+}
+
 .header-logo svg {
   height: 100%;
   width: 100%;
 }
 
+.header-logo.white-theme>a>.icon:hover {
+  fill: var(--lang-button-hover-color);
+  transition: 1s;
+}
 
 .header-logo a {
   display: inline-block;
@@ -461,6 +473,15 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s ease-in-out;
 }
 
+@media screen and (max-width: 319px) {
+  .hamburger-line {
+    width: 40px;
+    margin-right: 0;
+    margin-bottom: 7px;
+    transition: all 0.5s ease-in-out;
+  }
+}
+
 .hamburger-line.white-theme {
   background-color: var(--matte-black-color);
 }
@@ -476,6 +497,14 @@ h1, h2, h3, h4, h5, h6 {
   width: 62px;
 }
 
+@media screen and (max-width: 319px) {
+  .hamburger.active>.hamburger-line:first-child {
+    transform: translateY(11px) rotate(45deg);
+    width: 52px;
+  }
+}
+
+
 .hamburger.active>.hamburger-line:nth-child(2) {
   opacity: 0;
 }
@@ -484,6 +513,13 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-11px) rotate(-45deg);
   height: 2px;
   width: 62px;
+}
+
+@media screen and (max-width: 319px) {
+  .hamburger.active>.hamburger-line:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+    width: 52px;
+  }
 }
 
 
@@ -586,15 +622,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header-change-theme-button.button {
+  position: relative;
   background-color: transparent;
   width: 40px;
   height: 40px;
   margin: 0 35px;
-  transition: 0.5s;
-}
-
-.header-change-theme-button.button:hover {
-  opacity: 0.5;
   transition: 0.5s;
 }
 
@@ -605,18 +637,32 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.header-change-theme-button.white-theme {
-  background-image: url('assets/svg/icons/white-theme.svg');
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  background-size: contain;
+@media screen and (max-width: 319px) {
+  .header-change-theme-button.button {
+    margin-left: 0;
+    margin-right: 10px;
+  }
 }
 
-.header-change-theme-button.dark-theme {
-  background-image: url('assets/svg/icons/dark-theme.svg');
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  background-size: contain;
+.icon-white-theme {
+  display: none;
+}
+
+.icon-white-theme.white-theme {
+  display: block;
+}
+
+.icon-white-theme.white-theme:hover {
+  fill: var(--lang-button-hover-color);
+  transition: 1s;
+}
+
+.icon-icon-dark-theme {
+  display: block;
+}
+
+.icon-dark-theme.white-theme {
+  display: none;
 }
 
 .header-change-theme-button.white-theme:hover {

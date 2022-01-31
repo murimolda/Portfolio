@@ -84,13 +84,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (theme === 'white') {
             whiteThemeElements.forEach(element => {
                 element.classList.add("white-theme");
-                changeThemeButton.classList.remove("dark-theme");
                 htmlColor.dataset.color = 'white'
             });
         } else if (theme === 'dark') {
             whiteThemeElements.forEach(element => {
                 element.classList.remove("white-theme");
-                changeThemeButton.classList.add("dark-theme");
                 htmlColor.dataset.color = 'dark'
             });
         }
