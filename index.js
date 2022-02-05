@@ -248,36 +248,117 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     window.addEventListener('load', getLocalStorage);
 
+    /*Video player function*/
 
-    console.log(
-        'Portfolio#3 Самооценка: 83\n\
-        Смена изображений в секции portfolio +25\n\
-            при кликах по кнопкам Winter, Spring, Summer, Autumn \n\
-            в секции portfolio отображаются изображения \n\
-            из папки с соответствующим названием +20\n\
-            кнопка, по которой кликнули, становится активной \n\
-            т.е. выделяется стилем. Другие кнопки при этом будут неактивными +5\n\
-        Перевод страницы на два языка +25\n\
-            при клике по надписи ru англоязычная страница переводится на русский язык +10\n\
-            при клике по надписи en русскоязычная страница переводится на английский язык +10\n\
-            надписи en или ru, соответствующие текущему языку страницы, \n\
-            становятся активными т.е. выделяются стилем +5n\n\
-        Переключение светлой и тёмной темы +25\n\
-            На страницу добавлен переключатель при клике по которому: \n\
-            тёмная тема приложения сменяется светлой +10\n\
-            светлая тема приложения сменяется тёмной +10\n\
-            после смены светлой и тёмной темы интерактивные элементы \n\
-            по-прежнему изменяют внешний вид при наведении и клике \n\
-            и при этом остаются видимыми на странице (нет ситуации с белым шрифтом на белом фоне) +5\n\
-        Дополнительный функционал: \n\
-            выбранный пользователем язык отображения страницы \n\
-            и светлая или тёмная тема сохраняются при перезагрузке страницы +3\n\
-            Не удалось избавиться от моргания при перезагрзке, поэтому минус 2 балла\n\
-        Дополнительный функционал:\n\
-            сложные эффекты для кнопок при наведении и/или клике +5\n\
-            Для получения максимального балла за пункт требований \n\
-            достаточно добавить кнопкам только один эффект'
-    );
+    const videoPlayer = document.querySelector('.video-player-video');
+    const videoPlayerCover = document.querySelector('.video-player-cover');
+    const progressBar = document.querySelector('.video-progressbar');
+    const currTime = document.querySelector('.video-controls-time');
+    const durationTime = document.querySelector('.video-controls-duration');
+    const videoPlayerButton = document.querySelector('.video-player-button');
+    const playButton = document.querySelector('.video-controls-play');
+    const volumeButton = document.querySelector('.video-controls-volume');
+    const volumeScale = document.querySelector('.volume-progressbar');
+    const titleColor = '#BDAE82';
+    const videoCotrolsColor = '#C8C8C8';
 
+
+    const videoActive = () => {
+        if (videoPlayer.paused) {
+            videoPlayer.play();
+            playButton.classList.add("video-controls-pause");
+            videoPlayerButton.classList.add("hidden");
+            videoPlayerCover.classList.add("hidden");
+        } else {
+            videoPlayer.pause();
+            playButton.classList.remove("video-controls-pause");
+            videoPlayerButton.classList.remove("hidden");
+        }
+        if (durationTime.innerHTML == '00:00') {
+            durationTime.innerHTML = videoTime(videoPlayer.duration);
+        }
+    }
+
+    playButton.addEventListener('click', videoActive);
+    videoPlayerButton.addEventListener('click', videoActive);
+    videoPlayer.addEventListener('click', videoActive);
+
+    const videoTime = (time) => {
+        time = Math.floor(time);
+        let minutes = Math.floor(time / 60);
+        let seconds = Math.floor(time - minutes * 60);
+        let minutesValue = minutes;
+        var secondsValue = seconds;
+        if (minutes < 10) {
+            minutesValue = `0${minutes}`;
+        }
+        if (seconds < 10) {
+            secondsValue = `0${seconds}`;
+        }
+        return `${minutesValue}:${secondsValue}`;
+    }
+
+    const videoProgress = () => {
+        let progress = (Math.floor(videoPlayer.currentTime) / (Math.floor(videoPlayer.duration) / 100));
+        progressBar.value = progress;
+        currTime.innerHTML = videoTime(videoPlayer.currentTime);
+        progressBar.style.background = `linear-gradient(to right, ${titleColor} 0%, ${titleColor} ${progress}%, ${videoCotrolsColor} ${progress}%, ${videoCotrolsColor} 100%)`;
+        if (videoPlayer.currentTime === videoPlayer.duration) {
+            playButton.classList.remove("video-controls-pause");
+        }
+    }
+
+    const videoChangeTime = (e) => {
+        let posX = e.clientX - progressBar.offsetLeft;
+        let timePos = (posX * 100) / videoPlayer.offsetWidth;
+        videoPlayer.currentTime = (timePos * Math.floor(videoPlayer.duration)) / 100
+    }
+
+    videoPlayer.addEventListener('timeupdate', videoProgress);
+    progressBar.addEventListener('click', videoChangeTime);
+
+    const videoChangeVolume = () => {
+        let volume = volumeScale.value / 100;
+        videoPlayer.volume = volume;
+        if (videoPlayer.volume == 0) {
+            volumeButton.classList.add("video-controls-mute");
+        } else {
+            volumeButton.classList.remove("video-controls-mute");
+        }
+    }
+    const videoMute = () => {
+        if (videoPlayer.volume == 0) {
+            videoPlayer.volume = volumeScale.value / 100;
+            volumeButton.classList.remove("video-controls-mute");
+        } else {
+            videoPlayer.volume = 0;
+            volumeButton.classList.add("video-controls-mute");
+        }
+    }
+    volumeButton.addEventListener('click', videoMute);
+    volumeScale.addEventListener('change', videoChangeVolume);
+
+    volumeScale.addEventListener('input', function () {
+        const value = this.value;
+        this.style.background = `linear-gradient(to right, ${titleColor} 0%, ${titleColor} ${value}%, ${videoCotrolsColor} ${value}%, ${videoCotrolsColor} 100%)`
+    })
+
+    const videoWrap = document.querySelector('.video-wrap');
+    const videoFullscreenButton = document.querySelector('.video-controls-fullscreen');
+
+    const openFullscreen = () => {
+        if (document.fullscreenElement === null) {
+            videoWrap.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    videoFullscreenButton.addEventListener('click', openFullscreen);
+
+    document.addEventListener("fullscreenchange", () => {
+        videoFullscreenButton.classList.toggle("active");
+    });
 
 });
+

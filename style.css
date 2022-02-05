@@ -74,6 +74,7 @@
   --button-hover-bg: #CCBA8D;
   --main-font-size: 20px;
   --main-line-height: 40px;
+  --video-cotrols-color: #c8c8c8;
 
   /*Светлая тема*/
   --main-white-bg: #ffffff;
@@ -1103,6 +1104,11 @@ h1, h2, h3, h4, h5, h6 {
   height: 130px;
   border: none;
   background-color: transparent;
+  z-index: 1000;
+}
+
+.video-player-button.hidden {
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -1118,31 +1124,144 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .video-player-cover {
+  position: absolute;
   overflow: hidden;
   width: 100%;
-  height: 705px;
+  height: 100%;
   background: url('assets/img/video-bg.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center 0;
 }
 
+.video-player-cover.hidden {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .video-player-cover {
-    height: 418px;
     background: url('assets/img/video-bg768px.jpg');
-    background-size: auto 438px;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: -1px -9px;
+    background-position: center 0;
   }
 }
 
-@media screen and (max-width: 600px) {
-  .video-player-cover {
-    width: 100vw;
-    height: calc(100vw / 1.5);
-    background-size: 100vw auto;
-    background-position: center center;
+.video-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.video-player-video {
+  width: calc(100% + 2px);
+  height: auto;
+}
+
+.video-player-controls {
+  display: flex;
+  width: calc(100% + 2px);
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 20px;
+  background-color: var(--main-bg);
+}
+
+.video-controls-icon {
+  width: 40px;
+  height: 36px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.video-controls-icon:hover, .video-controls-icon:active {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
+}
+
+.video-controls-play {
+  background: url(./assets/svg/icons/play.svg);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.video-controls-pause {
+  background: url(./assets/svg/icons/pause.svg);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.video-controls-time {
+  color: var(--video-cotrols-color)
+}
+
+.video-controls-duration {
+  color: var(--video-cotrols-color)
+}
+
+.video-controls-volume {
+  background: url(./assets/svg/icons/volume.svg);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin-left: 10px;
+}
+
+.video-controls-mute {
+  background: url(./assets/svg/icons/mute.svg);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.progress-input {
+  height: 10px;
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+}
+
+.progress-input::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  cursor: ew-resize;
+  background: var(--main-color);
+}
+
+.video-progressbar {
+  width: calc(70% - 160px);
+  margin: 0 10px;
+  background: linear-gradient(to right, var(--title-color) 0%, var(--title-color) 0%, var(--video-cotrols-color) 0%, var(--video-cotrols-color) 100%);
+}
+
+@media screen and (max-width: 768px) {
+  .video-progressbar {
+    width: calc(60% - 160px);
   }
+}
+
+.volume-progressbar {
+  width: calc(20% - 40px);
+  margin: 0 10px;
+  background: linear-gradient(to right, var(--title-color) 0%, var(--title-color) 40%, var(--video-cotrols-color) 40%, var(--video-cotrols-color) 100%);
+}
+
+.video-controls-fullscreen {
+  background: url(./assets/svg/icons/fullscreen.svg);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.video-controls-fullscreen.active {
+  background: url(./assets/svg/icons/fullscreen_close.svg);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 /*Section price*/
