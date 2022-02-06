@@ -308,10 +308,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    let mousedown = false;
+    progressBar.addEventListener("mousemove", (e) => {
+        if (mousedown) {
+            videoChangeTime(e);
+        }
+    });
+
+    progressBar.addEventListener("mousedown", () => (mousedown = true));
+    progressBar.addEventListener("mouseup", () => (mousedown = false));
+
     const videoChangeTime = (e) => {
         let posX = e.clientX - progressBar.offsetLeft;
         let timePos = (posX * 100) / videoPlayer.offsetWidth;
-        videoPlayer.currentTime = (timePos * Math.floor(videoPlayer.duration)) / 100
+        videoPlayer.currentTime = (timePos * videoPlayer.duration) / 100
     }
 
     videoPlayer.addEventListener('timeupdate', videoProgress);
