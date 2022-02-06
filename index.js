@@ -308,24 +308,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    let mousedown = false;
-    progressBar.addEventListener("mousemove", (e) => {
-        if (mousedown) {
-            videoChangeTime(e);
-        }
-    });
-
-    progressBar.addEventListener("mousedown", () => (mousedown = true));
-    progressBar.addEventListener("mouseup", () => (mousedown = false));
-
-    const videoChangeTime = (e) => {
-        let posX = e.clientX - progressBar.offsetLeft;
-        let timePos = (posX * 100) / videoPlayer.offsetWidth;
-        videoPlayer.currentTime = (timePos * videoPlayer.duration) / 100
-    }
-
     videoPlayer.addEventListener('timeupdate', videoProgress);
-    progressBar.addEventListener('click', videoChangeTime);
+
+    progressBar.addEventListener("input", function () {
+        let newTime = videoPlayer.duration * (progressBar.value / 100);
+        console.log(newTime);
+        videoPlayer.currentTime = newTime;
+    })
+
 
     const videoChangeVolume = () => {
         let volume = volumeScale.value / 100;
@@ -350,6 +340,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     volumeScale.addEventListener('input', function () {
         const value = this.value;
+        console.log(value)
         this.style.background = `linear-gradient(to right, ${titleColor} 0%, ${titleColor} ${value}%, ${videoCotrolsColor} ${value}%, ${videoCotrolsColor} 100%)`
     })
 
