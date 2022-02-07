@@ -273,6 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
             videoPlayer.pause();
             playButton.classList.remove("video-controls-pause");
             videoPlayerButton.classList.remove("hidden");
+            videoPlayerButton.classList.add("open-video");
         }
         if (durationTime.innerHTML == '00:00') {
             durationTime.innerHTML = videoTime(videoPlayer.duration);
@@ -312,7 +313,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     progressBar.addEventListener("input", function () {
         let newTime = videoPlayer.duration * (progressBar.value / 100);
-        console.log(newTime);
         videoPlayer.currentTime = newTime;
     })
 
